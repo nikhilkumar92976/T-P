@@ -57,13 +57,13 @@ const Login = () => {
             <Button
               type="submit"
               size="2"
-              className="text-2xl font-medium py-1 rounded-2xl"
+             className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
               variant="classic"
             >
               Submit
             </Button>
-            <div className="pl-[8vw] pt-2">
-              <Link to="/singUp" className="mt-2 text-xl">
+            <div className="pl-[9vw] pt-2">
+              <Link to="/singUp" className="mt-2 text-md">
                 Create Account
               </Link>
             </div>

@@ -1,16 +1,8 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import { PiStudentFill } from "react-icons/pi";
-import PlatformLogo from "./PlatformLogo";
-import { CiLight } from "react-icons/ci";
-import { MdLightMode } from "react-icons/md";
-import logo  from '../assets/react.svg'
+
 const Header = () => {
-  // const [theme,setTheme] = useState('Light');
-  // const handleTheme =()=>{
-  //   let themeValue = theme=='Light'?'Dark':'Light';
-  //   setTheme(themeValue)
-  // }
   return (
     <div className="w-screen  h-14  px-8  border-b-[1px] border-b-[#1D202A]  flex justify-between items-center sticky top-0 bg-black ">
       <div className="left">
