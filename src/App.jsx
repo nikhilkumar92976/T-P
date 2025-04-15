@@ -1,18 +1,23 @@
-import React from "react";
+import React from 'react'
 import { ThemeProvider } from "next-themes";
-import Login  from "./pages/notLogged/Login";
-import { Theme,Flex } from "@radix-ui/themes";
-import Signup from "./pages/notLogged/Signup";
-import Dashboard from "./pages/logged/Dashboard";
-import PlatformLogo from "./components/PlatformLogo";
+import {Routes,Route} from 'react-router-dom'
+import Dashboard from '../src/pages/notLogged/Dashboard'
+import Login from '../src/pages/notLogged/Login'
+import Singup from '../src/pages/notLogged/Signup'
+
 function App() {
   return (
     <ThemeProvider attribute="class"  >
-      <Theme className="w-screen h-screen">
-        <Dashboard/>
-      </Theme>
+    <div className="w-screen h-screen overflow-x-hidden">
+        <Routes>
+          <Route path="/" element={<Dashboard/>}/>
+          <Route path="/login" element={<Login/>}/>
+          <Route path="/singup" element={<Singup/>}/>
+        </Routes>
+    </div>
     </ThemeProvider>
-  );
+  )
 }
 
-export default App;
+export default App
+
