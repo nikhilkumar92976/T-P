@@ -6,6 +6,8 @@ import Login from '../src/pages/notLogged/Login'
 import Singup from '../src/pages/notLogged/Signup'
 import Home from '../src/pages/logged/Home'
 import CodeEditor from "../src/pages/editor/comp/CodeEditor";
+import Contact from "../src/pages/notLogged/Contact"
+import About from "../src/pages/notLogged/About"
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
           <Route path="/singup" element={<Singup/>}/>
           <Route path="/home" element={<Home/>}/>
           <Route path="codeeditor" element={<CodeEditor/>}/>
+          <Route path="/about" element={<About/>}/>
+          <Route path="/contact" element={<Contact/>}/>
         </Routes>
     </div>
     </ThemeProvider>

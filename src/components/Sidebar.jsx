@@ -9,6 +9,8 @@ import { FaBrain } from "react-icons/fa6";
 import { MdAdb } from "react-icons/md";
 import { RiSortNumberAsc } from "react-icons/ri";
 import { LuCodeXml } from "react-icons/lu";
+import { MdOutlineContactSupport } from "react-icons/md";
+import { IoCallSharp } from "react-icons/io5";
 
 function Sidebar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -18,9 +20,11 @@ function Sidebar() {
     };
   return (
     <div
-    className={`fixed sm:static bg-[#10141E] min-h-screen border-r-2 border-zinc-500 pt-6 px-8 z-20 transition-all duration-300 ${
-      isOpen ? 'w-[80%]' : 'w-0 sm:w-[23%]'
-    } ${isOpen || window.innerWidth >= 640 ? 'opacity-100' : 'opacity-0'}`}
+    className={`fixed sm:static bg-[#10141E] h-screen border-r-2 border-zinc-500 pt-6 px-8 z-20 transition-all duration-300
+      ${isOpen ? 'w-[80%]' : 'w-0 sm:w-[23%]'}
+      ${isOpen || window.innerWidth >= 640 ? 'opacity-100' : 'opacity-0'}
+      overflow-y-auto
+    `}
     >
     {/* Toggle Button */}
     <button
@@ -72,7 +76,21 @@ function Sidebar() {
              <LuCodeXml  className='mt-1'/> CodeEditor
           </Link>
           
+          
+
         </nav>
+
+        <hr className='h-[1px] mt-1 border-none bg-zinc-400' />
+        <nav className='flex flex-col  items-center sm:items-start'>
+              
+          <Link to="/about"className='hover:bg-[#6556CD] flex gap-3 text-[1.1vw] sm:text-[1.4vw]  w-full hover:text-white mt-3 px-4 py-3 rounded-md duration-300 text-zinc-400 sm:text-[1.1vw]'          >
+             <MdOutlineContactSupport   className='mt-1'/> About
+          </Link>
+          <Link to="/contact"className='hover:bg-[#6556CD] flex gap-3 text-[1.1vw] sm:text-[1.4vw]  w-full hover:text-white mt-3 px-4 py-3 rounded-md duration-300 text-zinc-400 sm:text-[1.1vw]'          >
+             <IoCallSharp  className='mt-1'/> Contact
+          </Link>
+        </nav>
+        
 
       </div>
     ) : null}
