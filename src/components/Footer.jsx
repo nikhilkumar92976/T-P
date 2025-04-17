@@ -4,9 +4,9 @@ import { IoDiamondOutline } from "react-icons/io5";
 
 function Footer() {
   return (
-    <div className='w-full relative h-[40vh] flex bg-black pt-5'>
-        <div className='h-full w-[25%] flex flex-col mt-5 items-center'>
-            <IoDiamondOutline className='text-5xl mb-10'/>
+    <div className='w-full relative h-[40vh] flex bg-black pt-5 mb-0'>
+        <div className='h-full w-[25%] flex flex-col  items-center'>
+            <IoDiamondOutline className='text-5xl mb-10 mt-5'/>
             <h1>© 2025 QuizCode, Inc. <br />
             All rights reserved.</h1>
         </div>

@@ -4,6 +4,8 @@ import {Routes,Route} from 'react-router-dom'
 import Dashboard from '../src/pages/notLogged/Dashboard'
 import Login from '../src/pages/notLogged/Login'
 import Singup from '../src/pages/notLogged/Signup'
+import Home from '../src/pages/logged/Home'
+import CodeEditor from "../src/pages/editor/comp/CodeEditor";
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
           <Route path="/" element={<Dashboard/>}/>
           <Route path="/login" element={<Login/>}/>
           <Route path="/singup" element={<Singup/>}/>
+          <Route path="/home" element={<Home/>}/>
+          <Route path="codeeditor" element={<CodeEditor/>}/>
         </Routes>
     </div>
     </ThemeProvider>

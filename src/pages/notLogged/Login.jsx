@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Button } from "@radix-ui/themes";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -14,6 +16,8 @@ const Login = () => {
 
     setEmail("");
     setPassword("");
+
+    navigate("/home");
   };
 
   return (
@@ -54,14 +58,14 @@ const Login = () => {
             Forgot password?
           </Link>
           <div className="flex justify-center space-x-3 flex-col">
-            <Button
-              type="submit"
-              size="2"
-             className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
-              variant="classic"
-            >
-              Submit
-            </Button>
+              <Button 
+                type="submit"
+                size="2"
+              className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+                variant="classic"
+              >
+                Submit
+              </Button>
             <div className="pl-[9vw] pt-2">
               <Link to="/singUp" className="mt-2 text-md">
                 Create Account
