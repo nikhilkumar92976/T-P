@@ -80,10 +80,10 @@ function Sidebar() {
         <hr className='h-[1px] mt-1 border-none bg-zinc-400' />
         <nav className='flex flex-col  items-center sm:items-start'>
               
-          <NavLink to="/about"className='hover:bg-[#6556CD] flex gap-3 text-[1.1vw] sm:text-[1.4vw]  w-full hover:text-white mt-3 px-4 py-3 rounded-md duration-300 text-zinc-400 sm:text-[1.1vw]'          >
+          <NavLink to="/dashboard/about"className='hover:bg-[#6556CD] flex gap-3 text-[1.1vw] sm:text-[1.4vw]  w-full hover:text-white mt-3 px-4 py-3 rounded-md duration-300 text-zinc-400 sm:text-[1.1vw]'          >
              <MdOutlineContactSupport   className='mt-1'/> About
           </NavLink>
-          <NavLink to="/contact"className='hover:bg-[#6556CD] flex gap-3 text-[1.1vw] sm:text-[1.4vw]  w-full hover:text-white mt-3 px-4 py-3 rounded-md duration-300 text-zinc-400 sm:text-[1.1vw]'          >
+          <NavLink to="/dashboard/contact"className='hover:bg-[#6556CD] flex gap-3 text-[1.1vw] sm:text-[1.4vw]  w-full hover:text-white mt-3 px-4 py-3 rounded-md duration-300 text-zinc-400 sm:text-[1.1vw]'          >
              <IoCallSharp  className='mt-1'/> Help
           </NavLink>
         </nav>

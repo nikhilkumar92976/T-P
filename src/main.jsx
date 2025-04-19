@@ -16,6 +16,8 @@ import Tests from "./pages/logged/dashboard_pages/Tests.jsx";
 import Prepration from "./pages/logged/dashboard_pages/Prepration.jsx";
 import CodeEditor from "./pages/logged/editor/comp/CodeEditor.jsx";
 import History from "./pages/logged/dashboard_pages/History.jsx";
+import About from "./pages/notLogged/About.jsx";
+import Contact from "./pages/notLogged/Contact.jsx";
 const Router = createBrowserRouter([
   {
     path:"*",
@@ -56,6 +58,14 @@ const Router = createBrowserRouter([
       {
         path:'codeeditor',
         element:<CodeEditor/>
+      },
+      {
+        path:'contact',
+        element:<Contact/>
+      },
+      {
+        path:'about',
+        element:<About/>
       },
       {
         index:true,
