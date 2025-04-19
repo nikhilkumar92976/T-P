@@ -67,7 +67,7 @@ const Login = () => {
                 Submit
               </Button>
             <div className="pl-[9vw] pt-2">
-              <Link to="/singUp" className="mt-2 text-md">
+              <Link to="/signup" className="mt-2 text-md">
                 Create Account
               </Link>
             </div>

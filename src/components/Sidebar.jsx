@@ -1,6 +1,6 @@
 import React from 'react'
 import {useState} from 'react'
-import {Link} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 import { FaHome } from "react-icons/fa";
 import { MdOutlineFilter9Plus } from "react-icons/md";
 import { SiAlwaysdata } from "react-icons/si";
@@ -48,33 +48,43 @@ function Sidebar() {
 
         
         <hr className='h-[1px] mt-1 border-none bg-zinc-400' />
-        {/* Navigation Links */}
+        {/* Navigation NavLinks */}
         <h2 className='text-lg sm:text-[1.3vw] mb-1 mt-2 font-semibold text-center sm:text-left'>New Features</h2>
         <nav className='flex flex-col  items-center sm:items-start'>
-          <Link to="/"className='hover:bg-[#6556CD] flex gap-3 text-[1.1vw] sm:text-[1.4vw] w-full hover:text-white mt-3 px-4 py-3 rounded-md duration-300 text-zinc-400 sm:text-[1.1vw]'          >
-             <FaHome className='mt-1'/> Home
-          </Link>
-          <Link to="/"className='hover:bg-[#6556CD] flex gap-3 text-[1.1vw] sm:text-[1.4vw]  w-full hover:text-white mt-3 px-4 py-3 rounded-md duration-300 text-zinc-400 sm:text-[1.1vw]'          >
-             <MdOutlineFilter9Plus className='mt-1'/> Arithmetic Aptitude
-          </Link>
-          <Link to="/"className='hover:bg-[#6556CD] flex gap-3 text-[1.1vw] sm:text-[1.4vw]  w-full hover:text-white mt-3 px-4 py-3 rounded-md duration-300 text-zinc-400 sm:text-[1.1vw]'          >
+          <NavLink to="/dashboard/profile"className='hover:bg-[#6556CD] flex gap-3 text-[1.1vw] sm:text-[1.4vw] w-full hover:text-white mt-3 px-4 py-3 rounded-md duration-300 text-zinc-400 sm:text-[1.1vw]'          >
+             <FaHome className='mt-1'/> Profile
+          </NavLink>
+          <NavLink to="/dashboard/tests"className='hover:bg-[#6556CD] flex gap-3 text-[1.1vw] sm:text-[1.4vw] w-full hover:text-white mt-3 px-4 py-3 rounded-md duration-300 text-zinc-400 sm:text-[1.1vw]'          >
+             <FaHome className='mt-1'/> Tests
+          </NavLink>
+          <NavLink to="/dashboard/history"className='hover:bg-[#6556CD] flex gap-3 text-[1.1vw] sm:text-[1.4vw] w-full hover:text-white mt-3 px-4 py-3 rounded-md duration-300 text-zinc-400 sm:text-[1.1vw]'          >
+             <FaHome className='mt-1'/> History
+          </NavLink>
+          <NavLink to="/dashboard/prepration"className='hover:bg-[#6556CD] flex gap-3 text-[1.1vw] sm:text-[1.4vw] w-full hover:text-white mt-3 px-4 py-3 rounded-md duration-300 text-zinc-400 sm:text-[1.1vw]'          >
+             <FaHome className='mt-1'/> Prepration
+          </NavLink>
+          {/* <NavLink to="/"className='hover:bg-[#6556CD] flex gap-3 text-[1.1vw] sm:text-[1.4vw]  w-full hover:text-white mt-3 px-4 py-3 rounded-md duration-300 text-zinc-400 sm:text-[1.1vw]'          >
+             <MdOutlineFilter9Plus className='mt-1'/> Aptitude
+          </NavLink>
+          <NavLink to="/"className='hover:bg-[#6556CD] flex gap-3 text-[1.1vw] sm:text-[1.4vw]  w-full hover:text-white mt-3 px-4 py-3 rounded-md duration-300 text-zinc-400 sm:text-[1.1vw]'          >
              <SiAlwaysdata className='mt-1'/> Data Inperpretation
-          </Link>
-          <Link to="/"className='hover:bg-[#6556CD] flex gap-3 text-[1.1vw] sm:text-[1.4vw]  w-full hover:text-white mt-3 px-4 py-3 rounded-md duration-300 text-zinc-400 sm:text-[1.1vw]'          >
+          </NavLink>
+          <NavLink to="/"className='hover:bg-[#6556CD] flex gap-3 text-[1.1vw] sm:text-[1.4vw]  w-full hover:text-white mt-3 px-4 py-3 rounded-md duration-300 text-zinc-400 sm:text-[1.1vw]'          >
              <MdSignLanguage className='mt-1'/> Verbal Ability
-          </Link>
-          <Link to="/"className='hover:bg-[#6556CD] flex gap-3 text-[1.1vw] sm:text-[1.4vw]  w-full hover:text-white mt-3 px-4 py-3 rounded-md duration-300 text-zinc-400 sm:text-[1.1vw]'          >
+          </NavLink>
+          <NavLink to="/"className='hover:bg-[#6556CD] flex gap-3 text-[1.1vw] sm:text-[1.4vw]  w-full hover:text-white mt-3 px-4 py-3 rounded-md duration-300 text-zinc-400 sm:text-[1.1vw]'          >
              <FaBrain className='mt-1'/> Logical Reasoning
-          </Link>
-          <Link to="/"className='hover:bg-[#6556CD] flex gap-3 text-[1.1vw] sm:text-[1.4vw]  w-full hover:text-white mt-3 px-4 py-3 rounded-md duration-300 text-zinc-400 sm:text-[1.1vw]'          >
+          </NavLink>
+          <NavLink to="/"className='hover:bg-[#6556CD] flex gap-3 text-[1.1vw] sm:text-[1.4vw]  w-full hover:text-white mt-3 px-4 py-3 rounded-md duration-300 text-zinc-400 sm:text-[1.1vw]'          >
              <MdAdb className='mt-1'/> Verbal Reasoning
-          </Link>
-          <Link to="/"className='hover:bg-[#6556CD] flex gap-3 text-[1.1vw] sm:text-[1.4vw]  w-full hover:text-white mt-3 px-4 py-3 rounded-md duration-300 text-zinc-400 sm:text-[1.1vw]'          >
+          </NavLink>
+          <NavLink to="/"className='hover:bg-[#6556CD] flex gap-3 text-[1.1vw] sm:text-[1.4vw]  w-full hover:text-white mt-3 px-4 py-3 rounded-md duration-300 text-zinc-400 sm:text-[1.1vw]'          >
              <RiSortNumberAsc className='mt-1'/> NonVerbal Ability
-          </Link>
-          <Link to="/codeeditor"className='hover:bg-[#6556CD] flex gap-3 text-[1.1vw] sm:text-[1.4vw]  w-full hover:text-white mt-3 px-4 py-3 rounded-md duration-300 text-zinc-400 sm:text-[1.1vw]'          >
+          </NavLink>
+          */}
+          <NavLink to="/dashboard/codeeditor"className='hover:bg-[#6556CD] flex gap-3 text-[1.1vw] sm:text-[1.4vw]  w-full hover:text-white mt-3 px-4 py-3 rounded-md duration-300 text-zinc-400 sm:text-[1.1vw]'          >
              <LuCodeXml  className='mt-1'/> CodeEditor
-          </Link>
+          </NavLink>  
           
           
 
@@ -83,12 +93,12 @@ function Sidebar() {
         <hr className='h-[1px] mt-1 border-none bg-zinc-400' />
         <nav className='flex flex-col  items-center sm:items-start'>
               
-          <Link to="/about"className='hover:bg-[#6556CD] flex gap-3 text-[1.1vw] sm:text-[1.4vw]  w-full hover:text-white mt-3 px-4 py-3 rounded-md duration-300 text-zinc-400 sm:text-[1.1vw]'          >
+          <NavLink to="/about"className='hover:bg-[#6556CD] flex gap-3 text-[1.1vw] sm:text-[1.4vw]  w-full hover:text-white mt-3 px-4 py-3 rounded-md duration-300 text-zinc-400 sm:text-[1.1vw]'          >
              <MdOutlineContactSupport   className='mt-1'/> About
-          </Link>
-          <Link to="/contact"className='hover:bg-[#6556CD] flex gap-3 text-[1.1vw] sm:text-[1.4vw]  w-full hover:text-white mt-3 px-4 py-3 rounded-md duration-300 text-zinc-400 sm:text-[1.1vw]'          >
-             <IoCallSharp  className='mt-1'/> Contact
-          </Link>
+          </NavLink>
+          <NavLink to="/contact"className='hover:bg-[#6556CD] flex gap-3 text-[1.1vw] sm:text-[1.4vw]  w-full hover:text-white mt-3 px-4 py-3 rounded-md duration-300 text-zinc-400 sm:text-[1.1vw]'          >
+             <IoCallSharp  className='mt-1'/> Help
+          </NavLink>
         </nav>
         
 
