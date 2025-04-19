@@ -6,7 +6,7 @@ function Dashboard() {
   return (
     <div className="flex">
       <Sidebar />
-      <div className="w-[77%] min-h-screen bg-[#2e3442] ">
+      <div className="w-full min-h-screen bg-[#2e3442] ">
         <Outlet/>
       </div>
     </div>

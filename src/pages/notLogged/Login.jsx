@@ -17,7 +17,7 @@ const Login = () => {
     setEmail("");
     setPassword("");
 
-    navigate("/home");
+    navigate("/dashboard");
   };
 
   return (
