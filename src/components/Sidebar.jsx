@@ -8,7 +8,7 @@ import { MdSignLanguage } from "react-icons/md";
 import { FaBrain } from "react-icons/fa6";
 import { MdAdb } from "react-icons/md";
 import { RiSortNumberAsc } from "react-icons/ri";
-import { CgProfile } from "react-icons/cg";
+
 import { LuComputer } from "react-icons/lu";
 import { FaHistory } from "react-icons/fa";
 import { LuNotebookPen } from "react-icons/lu";
@@ -20,16 +20,13 @@ import { IoCallSharp } from "react-icons/io5";
 function Sidebar() {
     const [isOpen, setIsOpen] = useState(true);
 
-    const toggleSidebar = () => {
-        setIsOpen(!isOpen);
-    };
   return (
-    <div className='w-1/5 px-4 py-8'>
+    <div className='w-1/5 px-4 py-8 bg-[#10141E] border-r border-gray-500'>
       <div className='flex flex-col '>
         {/* Logo */}
         <div className='flex justify-center sm:justify-start mb-3'>
           <i className="text-[#6556CD] mr-2 ri-tv-fill text-2xl "></i>
-          <h2 className='text-2xl sm:text-2xl font-bold flex ml-16'>
+          <h2 className='text-2xl sm:text-2xl font-bold flex ml-6'>
             <span className='hover:text-[#6556CD]'>Next </span>
             <span className='text-[#6556CD] hover:text-white'> Step</span>
           </h2>
@@ -40,9 +37,7 @@ function Sidebar() {
         {/* Navigation NavLinks */}
         <h2 className='text-lg sm:text-[1.3vw] mb-1 mt-2 font-semibold text-center sm:text-left'>New Features</h2>
         <nav className='flex flex-col  items-center sm:items-start'>
-          <NavLink to="/dashboard/profile"className='hover:bg-[#6556CD] flex gap-3 text-[1.1vw] sm:text-[1.4vw] w-full hover:text-white mt-3 px-4 py-3 rounded-md duration-300 text-zinc-400 sm:text-[1.1vw]'          >
-             <CgProfile className='mt-1'/> Profile
-          </NavLink>
+          
           <NavLink to="/dashboard/tests"className='hover:bg-[#6556CD] flex gap-3 text-[1.1vw] sm:text-[1.4vw] w-full hover:text-white mt-3 px-4 py-3 rounded-md duration-300 text-zinc-400 sm:text-[1.1vw]'          >
              <LuComputer className='mt-1'/> Tests
           </NavLink>

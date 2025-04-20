@@ -20,7 +20,7 @@ const CodeEditor = () => {
   };
 
   return (
-    <div className="p-4 bg-[#10141E] h-screen w-screen">
+    <div className="p-4 bg-[#10141E] h-screen w-full">
     <div className="flex flex-col lg:flex-row gap-4">
       <div className="w-full lg:w-1/2">
         <LanguageSelector language={language} onSelect={onSelect} />

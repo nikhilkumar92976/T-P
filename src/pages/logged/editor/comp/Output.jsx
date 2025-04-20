@@ -38,7 +38,7 @@ const Output = ({ editorRef, language }) => {
       </div>
     {/* output screen */}
     <div
-      className={`h-[85vh] w-[48vw] p-2 overflow-auto border rounded ${
+      className={`h-[85vh] w-[40vw] p-2 overflow-auto border rounded ${
         isError ? "border-red-500 text-red-400" : "border-gray-700"
       }`}
     >
