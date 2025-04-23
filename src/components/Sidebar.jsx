@@ -18,10 +18,9 @@ import { MdOutlineContactSupport } from "react-icons/md";
 import { IoCallSharp } from "react-icons/io5";
 
 function Sidebar() {
-    const [isOpen, setIsOpen] = useState(true);
-
+   
   return (
-    <div className='w-1/5 px-4 py-8 bg-[#10141E] border-r border-gray-500'>
+    <div className='w-1/5   px-4 py-8 bg-[#10141E] border-r border-gray-500 '>
       <div className='flex flex-col '>
         {/* Logo */}
         <div className='flex justify-center sm:justify-start mb-3'>

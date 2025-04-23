@@ -8,7 +8,7 @@ function Dashboard() {
   return (
     <div className="flex justify-between overflow-x-hidden overflow-y-hidden">
       <Sidebar />
-      <div className="w-full min-h-screen bg-[#2e3442] ">
+      <div className="w-full min-h-screen bg-[#2e3442]">
         <div className="w-full flex justify-end h-14 px-2 border-b border-b-[#787e92]  items-center sticky top-0 bg-[#10141E] z-50">
           <NavLink
             to="/dashboard/profile"
