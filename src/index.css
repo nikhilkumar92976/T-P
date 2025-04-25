@@ -6,3 +6,18 @@
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color-scheme: dark;
 }
+.color-empty {
+    fill: #2e2e2e;
+  }
+  .color-scale-1 {
+    fill: #8bc34a;
+  }
+  .color-scale-2 {
+    fill: #4caf50;
+  }
+  .color-scale-3 {
+    fill: #388e3c;
+  }
+  .color-scale-4 {
+    fill: #1b5e20;
+  }
