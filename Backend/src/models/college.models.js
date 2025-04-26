@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const studentSchema = new mongoose.Schema({
+const collegeSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -31,17 +31,13 @@ const studentSchema = new mongoose.Schema({
     required:true,
     trim:true
   },
-  rollno: String,
-  branch: String,
-  batch: Date,
-  photo: String,
-  total_tests_appeared: {
-    type: Number,
-    default: 0,
+  college_id: {
+    type:String,
+    required
   },
-  average_score: {
-    type: Number,
-    default: 0,
-  },
-  last_test_date: Date,
+  subject:[{
+    type:String,
+  }],
 },{timestamps:true});
+
+export const College = mongoose.model("College", collegeSchema);
