@@ -18,6 +18,8 @@ import CodeEditor from "./pages/logged/editor/comp/CodeEditor.jsx";
 import History from "./pages/logged/dashboard_pages/History.jsx";
 import About from "./pages/notLogged/About.jsx";
 import Contact from "./pages/notLogged/Contact.jsx";
+import TermsConditions from "./pages/logged/dashboard_pages/TermsConditions.jsx";
+import Questions from "./pages/logged/dashboard_pages/Questions.jsx";
 const Router = createBrowserRouter([
   {
     path:"*",
@@ -72,6 +74,15 @@ const Router = createBrowserRouter([
         element:<Welcome/>
       },
   ]
+  },
+  //TODO : below routes are not set properly, need to be fixed
+  {
+    path:'dashboard/tests/terms-conditions',
+    element:<TermsConditions/>
+  },
+  {
+    path:'dashboard/tests/questions',
+    element:<Questions/>
   },
 ]);
 //  <Routes>

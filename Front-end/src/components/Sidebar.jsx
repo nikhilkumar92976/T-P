@@ -16,6 +16,7 @@ import { LuNotebookPen } from "react-icons/lu";
 import { LuCodeXml } from "react-icons/lu";
 import { MdOutlineContactSupport } from "react-icons/md";
 import { IoCallSharp } from "react-icons/io5";
+import { PiStudentFill } from "react-icons/pi";
 
 function Sidebar() {
    
@@ -23,9 +24,10 @@ function Sidebar() {
     <div className='w-1/5   px-4 py-8 bg-[#10141E] border-r border-gray-500 '>
       <div className='flex flex-col '>
         {/* Logo */}
-        <div className='flex justify-center sm:justify-start mb-3'>
+        <div className='flex justify-center sm:justify-start mb-3 '>
           <i className="text-[#6556CD] mr-2 ri-tv-fill text-2xl "></i>
-          <h2 className='text-2xl sm:text-2xl font-bold flex ml-6'>
+          <PiStudentFill className="text-3xl text-white ml-9" />
+          <h2 className='text-2xl sm:text-2xl font-bold flex '>
             <span className='hover:text-[#6556CD]'>Next </span>
             <span className='text-[#6556CD] hover:text-white'> Step</span>
           </h2>
