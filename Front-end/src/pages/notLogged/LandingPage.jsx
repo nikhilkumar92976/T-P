@@ -6,8 +6,11 @@ import Section1 from "../../components/Section1";
 import Section2 from "../../components/Section2";
 import Footer from "../../components/Footer";
 import { Outlet } from "react-router-dom";
+import { useState } from "react";
+
 
 const LandingPage = () => {
+ 
   return (
     <div className="min-h-screen w-full bg-[#030712] relative ">
       <Header />
@@ -16,6 +19,8 @@ const LandingPage = () => {
       <Section1 />
       <Section2 />
       <Footer />
+      
+      
     </div>
   );
 };

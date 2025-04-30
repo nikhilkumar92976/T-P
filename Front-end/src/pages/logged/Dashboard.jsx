@@ -1,26 +1,35 @@
 import React from "react";
 import Sidebar from "../../components/Sidebar";
 import { Outlet } from "react-router-dom";
-import { NavLink } from 'react-router-dom'
+import { NavLink } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
 
 function Dashboard() {
   return (
-    <div className="flex justify-between overflow-x-hidden overflow-y-hidden">
+    <div className="flex h-screen overflow-hidden">
+      {/* Sidebar (fixed left) */}
       <Sidebar />
-      <div className="w-full min-h-screen bg-[#2e3442]">
-        <div className="w-full flex justify-end h-14 px-2 border-b border-b-[#787e92]  items-center sticky top-0 bg-[#10141E] z-50">
+
+      {/* Main Content Area */}
+      <div className="flex flex-col flex-1 bg-[#2e3442]">
+        {/* Header (fixed top) */}
+        <div className="w-full h-14 px-2 border-b border-b-[#787e92] flex justify-end items-center sticky top-0 bg-[#10141E] z-50">
           <NavLink
             to="/dashboard/profile"
-            className="w-[10vw]  flex gap-3 text-[1.4vw]  hover:text-white mt-3 px-4 py-3 rounded-md duration-300 text-zinc-400 sm:text-[1.5vw]"
+            className="flex gap-3 text-[1.4vw] hover:text-white px-4 py-3 rounded-md duration-300 text-zinc-400 sm:text-[1.5vw]"
           >
             <CgProfile className="mt-1" /> Profile
           </NavLink>
         </div>
-        <Outlet />
+
+        {/* Scrollable Outlet */}
+        <div className="overflow-y-auto  p-4">
+          <Outlet />
+        </div>
       </div>
     </div>
   );
 }
 
 export default Dashboard;
+
