@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
-
-const collegeSchema = new mongoose.Schema({
-  name: {
+import bcrypt from "bcrypt"
+const adminSchema = new mongoose.Schema({
+  fullName: {
     type: String,
-    required: true,
+    // required: true,
     index: true,
     trim: true,
   },
@@ -28,16 +28,52 @@ const collegeSchema = new mongoose.Schema({
   },
   phone: {
     type:String,
-    required:true,
+    // required:true,
     trim:true
   },
   college_id: {
     type:String,
-    required
+    // required:true
   },
   subject:[{
     type:String,
   }],
+  refreshToken:{
+    type:String,
+  }
 },{timestamps:true});
 
-export const College = mongoose.model("College", collegeSchema);
+adminSchema.pre("save", async function (next){
+  // if not modified 
+  if(!this.isModified("password"))return next();
+
+  // if ask to modified
+  this.password = await bcrypt.hash(this.password,10)
+  next()
+});
+
+adminSchema.methods.isPasswordCorrect = async (requestPassword) => {
+  return await bcrypt.compare(requestPassword, this.password);
+};
+adminSchema.methods.generateAccessToken = function() {
+  return jwt.sign(
+    {
+      _id: this._id,
+      username: this.username,
+      email: this.email,
+      fullName: this.fullName,
+    },
+    process.env.ACCESS_TOKEN_SECRET,
+    { expiresIn: process.env.ACCESS_TOKEN_EXPIRY }
+  );
+};
+adminSchema.methods.generateRefreshToken = function() {
+  return jwt.sign(
+    {
+      _id: this._id,
+    },
+    process.env.REFRESH_TOKEN_SECRET,
+    { expiresIn: process.env.REFRESH_TOKEN_EXPIRY }
+  );
+};
+export const Admin = mongoose.model("Admin", adminSchema);
