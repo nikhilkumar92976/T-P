@@ -1,6 +1,7 @@
 import React from "react";
 import {Link} from 'react-router-dom'
 import { useState } from "react";
+import axios from "axios"
 
 const Signup = () => {
     const [username, setusername] = useState("");
@@ -13,6 +14,7 @@ const Signup = () => {
       e.preventDefault();
   
       const loginData = { username, email, password , conformpassword,checked};
+      // axios.post('http//')
       console.log("Login Data:", loginData);
       
       setusername("");
