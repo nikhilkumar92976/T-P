@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt"
+import jwt from "jsonwebtoken"
 const adminSchema = new mongoose.Schema({
   fullName: {
     type: String,
@@ -52,7 +53,7 @@ adminSchema.pre("save", async function (next){
   next()
 });
 
-adminSchema.methods.isPasswordCorrect = async (requestPassword) => {
+adminSchema.methods.isPasswordCorrect = async function (requestPassword) {
   return await bcrypt.compare(requestPassword, this.password);
 };
 adminSchema.methods.generateAccessToken = function() {

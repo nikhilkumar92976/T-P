@@ -2,22 +2,32 @@ import React, { useState } from "react";
 import { Button } from "@radix-ui/themes";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-const Login = () => {
+const Login =   () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const loginData = { email, password };
-    console.log("Login Data:", loginData);
-
-    setEmail("");
-    setPassword("");
-
-    navigate("/dashboard");
+    
+   try {
+     const response = await axios.post(
+       "http://localhost:5000/api/v1/users/login",
+       loginData
+     );
+     console.log("login successfully");
+ 
+     setEmail("");
+     setPassword("");
+     navigate("/dashboard",{replace:true});
+   } catch (error) {
+    console.error("Error during loing:", error.response?.message || error.message,loginData);
+    alert("Login failed. Please try again.");
+   }
   };
 
   return (
