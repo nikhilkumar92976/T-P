@@ -69,7 +69,7 @@ const loginUser = asyncHandler(async (req, res) => {
   // get data from login API request
   const { username, email, password } = req.body;
   // check if username or email one of them is present
-  if (!(email && username)) {
+  if (!(email || username)) {
     throw new ApiError(400, "username or email is required");
   }
   // check byv username or by email if user is registerd or not
