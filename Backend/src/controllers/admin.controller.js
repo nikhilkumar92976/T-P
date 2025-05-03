@@ -2,7 +2,10 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { Admin } from "../models/admin.models.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
-const registerUser = asyncHandler(async (req, res) => {
+import { Student } from "../models/student.models.js";
+import { Question } from "../models/questions.models.js";
+
+const registerAdmin = asyncHandler(async (req, res) => {
   // steps
   // get data
   // check data
@@ -48,78 +51,124 @@ const registerUser = asyncHandler(async (req, res) => {
     .json(new ApiResponse(201, createdAdmin, "Admin registered successfully"));
 });
 
-const generateAccessAndRefreshTokens = async (adminId) => {
-  try {
-    const admin = await Admin.findById(adminId);
-    const accessToken = await admin.generateAccessToken();
-    const refreshToken = await admin.generateRefreshToken();
-
-    admin.refreshToken = refreshToken;
-    await admin.save({ validateBeforeSave: false });
-
-    return { accessToken, refreshToken };
-  } catch (error) {
-    throw new ApiError(
-      500,
-      "somthing went wrong while generating the access and refresh token"
-    );
-  }
-};
-const loginUser = asyncHandler(async (req, res) => {
-  // get data from login API request
-  const { username, email, password } = req.body;
-  // check if username or email one of them is present
-  if (!(email || username)) {
-    throw new ApiError(400, "username or email is required");
-  }
-  // check byv username or by email if user is registerd or not
-  const admin = await Admin.findOne({ $or: [{ username }, { email }] });
-
-  // if not found means not registered
-  if (!admin) {
-    throw new ApiError(404, "Specified admin does not exist!!");
-  }
-  // if registered check if password feild is not empty
-  if (!password) {
-    throw new ApiError(409, "password is required");
-  }
-  // verify password if matches with existed one
-  const isPasswordCorrect = await admin.isPasswordCorrect(password);
-  if (!isPasswordCorrect) {
-    throw new ApiError(401, "Invalid credentials");
+const deleteStudent = asyncHandler(async (req, res) => {
+  // Ensure the user has the Admin role
+  if (req.user.role !== "Admin") {
+    throw new ApiError(403, "Access denied. Only Admins can delete students.");
   }
 
-  // now generate tokens for login session also store in db showing login
-  const { accessToken, refreshToken } = await generateAccessAndRefreshTokens(
-    admin._id
-  );
+  // Get the student ID from the request (e.g., from req.params or req.body)
+  const { studentName } = req.body; // Assuming the student ID is passed as a route parameter
 
-  const loggedAdmin = await Admin.findById(admin._id);
-  if (!loggedAdmin) {
-    throw new ApiError(409, "somthing went wrong while logging admin");
+  if (!studentName) {
+    throw new ApiError(400, "Student ID is required.");
   }
 
-  // options for preventing change of tokens by frontend
-  const options = {
-    httpOnly: true,
-    secure: true,
-  };
-  // return access and refresh token for localstorage and session for no need of login before session expires
+  // Find and delete the student by ID
+  const deletedStudent = await Student.findOneAndDelete(studentName);
+
+  if (!deletedStudent) {
+    throw new ApiError(404, "Student not found. Deletion failed.");
+  }
+
   return res
     .status(200)
-    .cookie("accessToken", accessToken, options)
-    .cookie("refreshToken", refreshToken, options)
     .json(
       new ApiResponse(
         200,
-        {
-          user: loggedAdmin,
-          accessToken,
-          refreshToken,
-        },
-        "user loggedIn Successfull"
+        deletedStudent,
+        "Student removed from the database successfully!"
       )
     );
 });
 
-export { registerUser, loginUser };
+const checkAdminRole = (req, res, next) => {
+  if (req.user.role !== "Admin") {
+    return res.status(403).json({ message: "Access denied. Admins only." });
+  }
+  next();
+};
+
+const createProblem = asyncHandler(async (req, res) => {
+  // get details
+  const { subject, problemStatement, options, correctOption, markAllocated } =
+    req.body;
+  //check if  everything present
+  if (
+    [subject, problemStatement, correctOption].some(
+      (field) => !field || field.trim() === ""
+    )
+  ) {
+    throw new ApiError(401, "Each feild is mendatory!!");
+  }
+  if(options.length <1){
+    throw new ApiError(401, "Each feild is mendatory!!");
+  }
+
+  // insert problem into db
+  await Question.create({
+    subject,
+    problemStatement,
+    options,
+    correctOption,
+    markAllocated,
+  });
+  return res
+    .status(200)
+    .json(new ApiResponse(200, "problem created successfully"));
+});
+const getProblem = asyncHandler(async(req,res)=>{
+  const {subject} = req.body;
+  const problems = await Question.find({subject})
+  return res.status(200).json(new ApiResponse(200,problems))
+}) 
+
+const registerStudent = asyncHandler(async (req, res) => {
+  // get student data
+  const { fullName, email, password } = req.body;
+// check for consistecy
+  if ([email,fullName, password].some((feild) => !feild || feild.trim() === "")) {
+    throw new ApiError(401, "Each feild is required!!");
+  }
+// check if student aready exist
+  const existAlready = await Student.findOne({
+    $or:[{fullName},{email}]
+  });
+  if (existAlready) {
+    throw new ApiError(
+      409,
+      "student with prvided crediential alrready exist!!"
+    );
+  }
+// create student entry
+ const student =  await Student.create({
+  fullName,
+    email,
+    password,
+  });
+
+  // check if cretaed sccessfully by search
+  const createdStudent = await Student.findById(student._id).select("-email -password");
+
+  // if not created
+  if (!createdStudent) {
+    throw new ApiError(
+      500,
+      createdStudent,
+      "somthing went wrong while registring the admin"
+    );
+  }
+  // if created successfully return some details
+  return res
+    .status(200)
+    .json(new ApiResponse(201, createdStudent, "Student registered successfully"));
+});
+
+export { 
+    registerAdmin,
+    deleteStudent,
+    checkAdminRole,
+    createProblem ,
+    getProblem,
+    registerStudent,
+  };

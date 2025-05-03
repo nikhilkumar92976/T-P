@@ -1,18 +1,37 @@
 import mongoose from "mongoose";
 
 const questionSchema = new mongoose.Schema({
-  test_id: {
-     type: mongoose.Schema.Types.ObjectId, 
-     ref: 'Test' 
+  subject: {
+    type: String,
+    required: true,
+    index:true,
+  },
+  problemStatement: {
+    type: String,
+    required: true,
+  },
+  options:{
+    type: [String],
+    required:true,
+    validate:{
+      validator:function(optionArray){
+        return optionArray.length >=2;
+      }
     },
-  subject: String,
-  problemtStatement: String,
-  options: [String],
-  correctAnswer: String,
+  },
+  correctOption: {
+    type: String,
+    required: true,
+    validate:{
+      validator:function(answer){
+        return this.options.some((feild)=> feild===answer)
+      }
+    },
+  },
   markAllocated: {
-    type:Number,
-    
+    type: Number,
+    default: 1,
   },
 });
 
-module.exports = mongoose.model('Question', questionSchema);
+ export const Question = mongoose.model("Question", questionSchema);
