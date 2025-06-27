@@ -1,99 +1,123 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { lazy, Suspense } from "react";
 import "./index.css";
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App.jsx";
-import LandingPage from "./pages/notLogged/LandingPage.jsx";
-import Login from "./pages/notLogged/Login.jsx";
-import Signup from "./pages/notLogged/Signup.jsx";
-import Profile from "./pages/logged/dashboard_pages/Profile.jsx";
-import Welcome from "./pages/logged/dashboard_pages/Welcome.jsx";
-import Dashboard from "./pages/logged/Dashboard.jsx";
-import Tests from "./pages/logged/dashboard_pages/Tests.jsx";
-import Prepration from "./pages/logged/dashboard_pages/Prepration.jsx";
-import CodeEditor from "./pages/logged/editor/comp/CodeEditor.jsx";
-import History from "./pages/logged/dashboard_pages/History.jsx";
-import About from "./pages/notLogged/About.jsx";
-import Contact from "./pages/notLogged/Contact.jsx";
-import TermsConditions from "./pages/logged/dashboard_pages/TermsConditions.jsx";
-import Questions from "./pages/logged/dashboard_pages/Questions.jsx";
+const Home = lazy(() => import("./pages/logged/student_dashboard_pages/Home.jsx"));
+const ForgotPassword = lazy(() =>
+  import("./pages/Landing Page/forgotPassword.jsx")
+);
+const Login = lazy(() => import("./pages/Landing Page/Login.jsx"));
+const Signup = lazy(() => import("./pages/Landing Page/Signup.jsx"));
+const Welcome = lazy(() =>
+  import("./pages/logged/student_dashboard_pages/Welcome.jsx")
+);
+const Dashboard = lazy(() => import("./pages/logged/Dashboard.jsx"));
+const Profile = lazy(() =>
+  import("./pages/logged/student_dashboard_pages/Profile.jsx")
+);
+const Tests = lazy(() =>
+  import("./pages/logged/student_dashboard_pages/OngoingTests.jsx")
+);
+const TestHistory = lazy(() =>
+  import("./pages/logged/student_dashboard_pages/TestHistory.jsx")
+);
+const Practice = lazy(() =>
+  import("./pages/logged/student_dashboard_pages/Practice.jsx")
+);
+const CodeEditor = lazy(() =>
+  import("./pages/logged/student_dashboard_pages/CodeEditor.jsx")
+);
+const Contact = lazy(() => import("./pages/Landing Page/Contact.jsx"));
+const About = lazy(() => import("./pages/Landing Page/About.jsx"));
+const TermsConditions = lazy(() =>
+  import("./pages/logged/student_dashboard_pages/TermsConditions.jsx")
+);
+const Materials = lazy(() =>
+  import("./pages/logged/student_dashboard_pages/Materials.jsx")
+);
+
+const withSuspense = (Component) => {
+  return (
+    <Suspense fallback={<center>Loading...</center>}>
+      <Component />
+    </Suspense>
+  );
+};
 const Router = createBrowserRouter([
   {
-    path:"*",
-    element:<Welcome/>
+    path: "*",
+    element: withSuspense(Welcome),
   },
   {
-    path: "/",
-    element: <App />,
+    path: "/" ,
+    element: withSuspense(App),
   },
   {
     path: "/login",
-    element: <Login />,
+    element: withSuspense(Login),
   },
   {
     path: "/signup",
-    element: <Signup />,
+    element: withSuspense(Signup),
+  },
+  {
+    path: "/forgot-password",
+    element: withSuspense(ForgotPassword),
   },
   {
     path: "/dashboard",
-    element: <Dashboard/>,
-    children:[
+    element: withSuspense(Dashboard),
+    children: [
       {
-        path:'profile',
-        element:<Profile/>
+        path: "home",
+        element: withSuspense(Home),
       },
       {
-        path:'tests',
-        element:<Tests/>
+        path: "profile",
+        element: withSuspense(Profile),
       },
       {
-        path:'history',
-        element:<History/>
+        path: "ongoing-tests",
+        element: withSuspense(Tests),
       },
       {
-        path:'prepration',
-        element:<Prepration/>
+        path: "test-history",
+        element: withSuspense(TestHistory),
       },
       {
-        path:'codeeditor',
-        element:<CodeEditor/>
+        path: "practice",
+        element: withSuspense(Practice),
       },
       {
-        path:'contact',
-        element:<Contact/>
+        path: "code-editor",
+        element: withSuspense(CodeEditor),
       },
       {
-        path:'about',
-        element:<About/>
+        path: "contact",
+        element: withSuspense(Contact),
       },
       {
-        index:true,
-        element:<Welcome/>
+        path: "about",
+        element: withSuspense(About),
       },
-  ]
+      {
+        index: true,
+        element: withSuspense(Welcome),
+      },
+    ],
   },
   //TODO : below routes are not set properly, need to be fixed
   {
-    path:'dashboard/tests/terms-conditions',
-    element:<TermsConditions/>
+    path: "dashboard/tests/terms-conditions",
+    element: <TermsConditions />,
   },
-  {
-    path:'dashboard/tests/questions',
-    element:<Questions/>
-  },
+  // {
+  //   path: "dashboard/tests/questions",
+  //   element: <  />,
+  // },
 ]);
-//  <Routes>
-//       <Route path="/" element={<Dashboard/>}/>
-//       <Route path="/login" element={<Login/>}/>
-//       <Route path="/singup" element={<Singup/>}/>
-//       <Route path="/home" element={<Home/>}/>
-//       <Route path="codeeditor" element={<CodeEditor/>}/>
-//       <Route path="/about" element={<About/>}/>
-//       <Route path="/contact" element={<Contact/>}/>
-// </Routes>
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <RouterProvider router={Router}>

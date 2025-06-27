@@ -1,10 +1,12 @@
 import React from "react";
-import LandingPage from "./pages/notLogged/LandingPage";
-
+import LandingPage from "./pages/Landing Page/LandingPage.jsx";
+import { Suspense } from "react";
 function App() {
   return (
     <div className="w-screen h-screen overflow-x-hidden">
-      <LandingPage />
+      <Suspense fallback={<div>Loading...</div>}>
+        <LandingPage />
+      </Suspense>
     </div>
   );
 }

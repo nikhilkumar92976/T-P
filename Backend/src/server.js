@@ -11,7 +11,7 @@ connectDB().then(()=>{
         console.log(`server is running at: ${process.env.PORT}`)
     });
     app.get("/", (req, res) => {
-        res.send("hey i'm listening u!");
+        res.send("hey are u there!");
     });
 })
 .catch((error)=>{

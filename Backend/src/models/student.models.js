@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import bcrypt from "bcrypt"
+import jwt from "jsonwebtoken"
 const studentSchema = new mongoose.Schema(
   {
     fullName: {
@@ -9,7 +11,6 @@ const studentSchema = new mongoose.Schema(
     },
     username: {
       type: String,
-      required: [true, "username is required"],
       unique: true,
       lowercase: true,
       trim: true,
@@ -33,14 +34,11 @@ const studentSchema = new mongoose.Schema(
     },
     phone: {
       type: String,
-      required: [true, "Phone number is required"],
       trim: true,
       match: [/^\d{10}$/, "Phone number must be 10 digits"],
-      index: true,
     },
     enrollment: {
       type: String,
-      required: [true, "Enrollment number is required"],
       match: [/\d{4}[A-Z]{2}\d{6}$/, "Enrollment number is required"],
       unique: true,
       trim: true,
@@ -53,9 +51,12 @@ const studentSchema = new mongoose.Schema(
       type: Date,
       default: null,
     },
+    role:{
+      type:String,
+      default:"Student"
+    },
     photo: {
       type: String,
-      to,
     },
     total_tests_appeared: {
       type: Number,
@@ -82,22 +83,23 @@ studentSchema.pre("save", async function (next){
   next()
 });
 
-studentSchema.methods.isPasswordCorrect = async (requestPassword) => {
+studentSchema.methods.isPasswordCorrect = async function (requestPassword)  {
   return await bcrypt.compare(requestPassword, this.password);
 };
-studentSchema.methods.generateAccessToken = (this) => {
+studentSchema.methods.generateAccessToken = function() {
   return jwt.sign(
     {
       _id: this._id,
       username: this.username,
       email: this.email,
       fullName: this.fullName,
+      role:this.role
     },
     process.env.ACCESS_TOKEN_SECRET,
     { expiresIn: process.env.ACCESS_TOKEN_EXPIRY }
   );
 };
-studentSchema.methods.generateRefreshToken = (this) => {
+studentSchema.methods.generateRefreshToken = function() {
   return jwt.sign(
     {
       _id: this._id,

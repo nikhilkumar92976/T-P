@@ -39,6 +39,10 @@ const adminSchema = new mongoose.Schema({
   subject:[{
     type:String,
   }],
+  role:{
+    type:String,
+    default:"Admin"
+  },
   refreshToken:{
     type:String,
   }
@@ -63,6 +67,7 @@ adminSchema.methods.generateAccessToken = function() {
       username: this.username,
       email: this.email,
       fullName: this.fullName,
+      role:this.role
     },
     process.env.ACCESS_TOKEN_SECRET,
     { expiresIn: process.env.ACCESS_TOKEN_EXPIRY }
