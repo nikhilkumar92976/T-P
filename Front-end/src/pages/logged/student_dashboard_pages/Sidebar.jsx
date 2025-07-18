@@ -26,6 +26,10 @@ import {
   ChartArea,
   FolderDot,
   Award,
+  ArrowLeft,
+  ArrowRight,
+  Menu,
+  Settings,
 } from "lucide-react";
 
 const menuItems = [
@@ -183,9 +187,9 @@ const RenderItems = ({ option, openedOptions, handleClicked }) => {
   );
 };
 
-const Sidebar = () => {
+const Sidebar = ({style}) => {
   const [openedOptions, setOpenedOptions] = useState({});
-
+  const [openBar, setOpenBar] = useState(false);
   useEffect(() => {
     const initialState = {};
     const collectIds = (items) => {
@@ -204,48 +208,57 @@ const Sidebar = () => {
       [id]: !prev[id],
     }));
   };
-
+ 
   return (
-    <div className="h-full w-64 border-2 border-primary-200 overflow-y-scroll ">
-      <div className="ml-6 my-10 flex flex-col space-y-2   overflow-hidden  whitespace-nowrap">
-        {menuItems.map((option) => (
-          <div
-            key={option.id}
-            className="
+    <>
+      <div
+        className={`h-full w-64 border-2 border-primary-200 overflow-y-scroll`}
+        style={style}
+      >
+          <div className="ml-6 my-10 flex flex-col space-y-2   overflow-hidden  whitespace-nowrap">
+            {menuItems.map((option) => (
+              <div
+                key={option.id}
+                className="
            h-auto flex flex-col  text-lg text-primary-700 cursor-pointer"
-          >
-            <div
-              id="parent"
-              className="flex items-center space-x-2"
-              onClick={() => handleClicked(option.id)}
-            >
-              {/* // up down arrow */}
-              {option.children ? (
-                openedOptions[option.id] ? (
-                  <ChevronDown size={16} />
-                ) : (
-                  <ChevronRight size={16} />
-                )
-              ) : null}
-              {/* // folder name */}
-              <span className="flex items-center gap-2 ">
-                {!option.children && option.icon}
-                {option.label}
-              </span>
-            </div>
-            {/* // childrens */}
-            {option.children && openedOptions[option.id] && (
-              <RenderItems
-                option={option}
-                openedOptions={openedOptions}
-                handleClicked={handleClicked}
-              />
-            )}
+              >
+                <div
+                  id="parent"
+                  className="flex items-center space-x-2"
+                  onClick={() => handleClicked(option.id)}
+                >
+                  {/* // up down arrow */}
+                  {option.children ? (
+                    openedOptions[option.id] ? (
+                      <ChevronDown size={16} />
+                    ) : (
+                      <ChevronRight size={16} />
+                    )
+                  ) : null}
+                  {/* // folder name */}
+                  <span className="flex items-center gap-2 ">
+                    {!option.children && option.icon}
+                    {option.label}
+                  </span>
+                </div>
+                {/* // childrens */}
+                {option.children && openedOptions[option.id] && (
+                  <RenderItems
+                    option={option}
+                    openedOptions={openedOptions}
+                    handleClicked={handleClicked}
+                  />
+                )}
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-    </div>
+      </div>  
+    </>
   );
 };
 
 export default Sidebar;
+
+
+
+ 

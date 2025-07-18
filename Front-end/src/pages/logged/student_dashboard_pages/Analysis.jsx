@@ -6,7 +6,6 @@ const Analysis = () => {
   return (
     <div className="flex flex-col space-y-2 ">
       <UserBLock />
-      
       <div id="row2" className="flex justify-between space-x-4">
         <AnswerDestribution/> 
         <RankingTrendGraph />

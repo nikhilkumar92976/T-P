@@ -23,7 +23,7 @@ const Navbar: React.FC = () => {
   return (
     <motion.header
       className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
-        isScrolled ? 'bg-white shadow-md' : 'bg-transparent'
+        isScrolled ? 'bg-white shadow-md' : 'bg-white'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -121,14 +121,14 @@ const Navbar: React.FC = () => {
               </a>
               <div className="flex flex-col space-y-3 pt-4 border-t">
                 <a
-                  href="#"
+                  href=""
                   className="text-primary-600 hover:text-primary-700 font-medium py-2"
                   onClick={() => setIsOpen(false)}
                 >
                   Login
                 </a>
                 <a
-                  href="#"
+                  href=""
                   className="btn-primary"
                   onClick={() => setIsOpen(false)}
                 >

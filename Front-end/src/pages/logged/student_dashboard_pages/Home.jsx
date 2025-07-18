@@ -11,9 +11,9 @@ const Home = () => {
   return (
     <div className="p-4 bg-primary-50 first-letter:">
       <Analysis></Analysis>
-      <Project></Project>
+      {/* <Project></Project> */}
       {/*<Performance></Performance>*/}
-      <ProjectsAndSkills/> 
+      {/* <ProjectsAndSkills/>  */}
       hello
       {/* <StudentAnalysis></StudentAnalysis>  */}
     </div>
