@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts';
 import { Calendar, Clock, CheckCircle, XCircle, TrendingUp, Filter } from 'lucide-react';
-import { mockTestHistory } from '../data/mockData';
+import { mockTestHistory } from '../../../data/mockData';
 import { format } from 'date-fns';
 
 const TestHistory = () => {
