@@ -15,8 +15,8 @@ const Features: React.FC = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3
+        staggerChildren: 0.1,
+        delayChildren: 0.1
       }
     }
   };
@@ -25,8 +25,8 @@ const Features: React.FC = () => {
     hidden: { y: 30, opacity: 0 },
     visible: {
       y: 0,
-      opacity: 1,
-      transition: { duration: 0.6, ease: "easeOut" }
+      opacity: .8,
+      transition: { duration: 0.2, ease: "easeIn" }
     }
   };
 

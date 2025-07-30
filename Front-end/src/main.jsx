@@ -4,6 +4,10 @@ import { lazy, Suspense } from "react";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App.jsx";
+
+const Students = lazy(() =>
+  import("./pages/logged/Admin_dashboard_pages/Students.jsx")
+);
 const TestManagement = lazy(() =>
   import("./pages/logged/Admin_dashboard_pages/TestManagement.jsx")
 );
@@ -32,10 +36,14 @@ const PseudoCode = lazy(() =>
   import("./pages/logged/student_dashboard_pages/PseudoCode.jsx")
 );
 const Comprehension = lazy(() =>
-  import("./pages/logged/student_dashboard_pages/test-components/Comprehension.jsx")
+  import(
+    "./pages/logged/student_dashboard_pages/test-components/Comprehension.jsx"
+  )
 );
 const Instruction = lazy(() =>
-  import("./pages/logged/student_dashboard_pages/test-components/Instruction.jsx")
+  import(
+    "./pages/logged/student_dashboard_pages/test-components/Instruction.jsx"
+  )
 );
 const TestPage = lazy(() =>
   import("./pages/logged/student_dashboard_pages/test-components/TestPage.jsx")
@@ -214,10 +222,10 @@ const Router = createBrowserRouter([
         path: "dashboard",
         element: withSuspense(AdminHome),
       },
-      {
-        path: "student-performance",
-        element: withSuspense(Performance),
-      },
+      // {
+      //   path: "student-performance",
+      //   element: withSuspense(Performance),
+      // },
       {
         path: "resources",
         element: withSuspense(Resources),
@@ -225,6 +233,10 @@ const Router = createBrowserRouter([
       {
         path: "test-management",
         element: withSuspense(TestManagement),
+      },
+      {
+        path: "manage-students",
+        element: withSuspense(Students),
       },
       {
         path: "students-queries",

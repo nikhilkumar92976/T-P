@@ -40,9 +40,9 @@ const menuItems = [
   },
   {
     id: "students",
-    label: "Students",
+    label: "Manage Students",
     icon: Users,
-    directTo: "admin_dashboard/dashboard",
+    directTo: "admin_dashboard/manage-students",
     children: [],
   },
   {
