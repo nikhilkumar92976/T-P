@@ -11,7 +11,7 @@ const CallToAction: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.2 }}
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Ready to Transform Your Placement Process?
@@ -26,7 +26,7 @@ const CallToAction: React.FC = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.2, delay: 0.1 }}
         >
           <motion.div 
             className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center"

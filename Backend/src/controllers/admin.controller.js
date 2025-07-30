@@ -15,6 +15,7 @@ const registerAdmin = asyncHandler(async (req, res) => {
   // get details from the API request
   const { username, email, password } = req.body;
   // check if any field is empty
+  console.log(req.body);
   if (
     [username, email, password].some((field) => !field || field.trim() === "")
   ) {

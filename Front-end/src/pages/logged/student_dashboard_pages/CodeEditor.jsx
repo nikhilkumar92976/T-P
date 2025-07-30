@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Editor from "@monaco-editor/react";
-import { Play, Save, Download, Upload, Settings, Terminal } from "lucide-react";
-
+import { Play, Save, Download, Upload, Settings } from "lucide-react";;
+ 
 const CodeEditor = () => {
   const [code, setCode] = useState(`// Welcome to the Code Editor
 function fibonacci(n) {
@@ -16,7 +16,7 @@ for (let i = 0; i < 10; i++) {
 }
 `);
   const [language, setLanguage] = useState("javascript");
-  const [theme, setTheme] = useState("vs-dark");
+  const [theme, setTheme] = useState("light");
   const [output, setOutput] = useState("");
   const [isRunning, setIsRunning] = useState(false);
 
@@ -168,151 +168,242 @@ ORDER BY
     }
   };
 
+  // return (
+  //   <div>
+  //     <div className="box-border h-screen pb-2 px-2 flex flex-col space-y-1 overflow-auto">
+  //       {/* Toolbar */}
+  //       <div className="flex items-center justify-between">
+  //         <div className="flex items-center space-x-3">
+  //           <select
+  //             value={language}
+  //             onChange={(e) => handleLanguageChange(e.target.value)}
+  //             className="px-2 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent"
+  //           >
+  //             {languages.map((lang) => (
+  //               <option key={lang.value} value={lang.value}>
+  //                 {lang.label}
+  //               </option>
+  //             ))}
+  //           </select>
+  //           <select
+  //             value={theme}
+  //             onChange={(e) => setTheme(e.target.value)}
+  //             className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent"
+  //           >
+  //             {themes.map((t) => (
+  //               <option key={t.value} value={t.value}>
+  //                 {t.label}
+  //               </option>
+  //             ))}
+  //           </select>
+  //           </div>
+  //           <div className="flex items-center justify- space-x-2">
+  //             <button
+  //               onClick={runCode}
+  //               disabled={isRunning}
+  //               className="h-8 w-12 flex items-center justify-center  text-white bg-gray-200 border rounded-lg disabled:bg-green-400 transition-colors"
+  //             >
+  //               {isRunning ? "..." : <Play color="gray" className="w-4 h-4" />}
+  //             </button>
+  //             <button
+  //               onClick={saveCode}
+  //               className="h-8 w-12 flex items-center justify-center  text-white bg-gray-200 border rounded-lg disabled:bg-green-400 transition-colors"
+  //             >
+  //               <Save color="gray" className="w-4 h-4" />
+  //             </button>
+  //             <label className="flex items-center space-x-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors cursor-pointer">
+  //               <Upload className="w-4 h-4" />
+  //               <input
+  //                 type="file"
+  //                 onChange={loadCode}
+  //                 className="hidden"
+  //                 accept=".js,.py,.java,.cpp,.c,.html,.css,.sql,.txt"
+  //               />
+  //             </label>
+  //             <div className="flex items-center space-x-3">
+  //               <button className="p-2 text-gray-600 hover:text-gray-800 transition-colors">
+  //                 <Settings className="w-5 h-5" />
+  //               </button>
+  //               <button className="p-2 text-gray-600 hover:text-gray-800 transition-colors">
+  //                 <Download className="w-5 h-5" />
+  //               </button>
+  //             </div>
+  //         </div>
+  //       </div>
+
+  //       {/* Editor and Output */}
+  //       <div className="border border-primary-500 rounded-md pb-4 flex-1 grid grid-cols-1 lg:grid-cols-2 gap-4 min-h-0 ">
+  //         {/* Code Editor */}
+  //         <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-auto">
+  //           <div className="flex items-center justify-between px-4 py-2 bg-gray-50 border-b border-gray-100">
+  //             <span className="text-sm font-medium text-gray-700">Editor</span>
+  //             <span className="text-xs text-gray-500">{language}</span>
+  //           </div>
+  //           <div className="h-96 lg:h-full">
+  //             <Editor
+  //               height="100%"
+  //               language={language}
+  //               theme={theme}
+  //               value={code}
+  //               onChange={(value) => setCode(value || "")}
+  //               options={{
+  //                 minimap: { enabled: false },
+  //                 fontSize: 14,
+  //                 lineNumbers: "on",
+  //                 roundedSelection: false,
+  //                 // scrollBeyondLastLine: false,
+  //                 automaticLayout: true,
+  //                 tabSize: 2,
+  //                 wordWrap: "on",
+  //               }}
+  //             />
+  //           </div>
+  //         </div>
+  //         {/* Output Panel */}
+  //         <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-auto">
+  //           <div className="flex items-center justify-between px-4 py-2 bg-gray-50 border-b border-gray-100">
+  //             <div className="flex items-center space-x-2">
+  //               <Terminal className="w-4 h-4 text-gray-600" />
+  //               <span className="text-sm font-medium text-gray-700">
+  //                 Output
+  //               </span>
+  //             </div>
+  //             <button
+  //               onClick={() => setOutput("")}
+  //               className="text-xs text-gray-500 hover:text-gray-700 transition-colors"
+  //             >
+  //               Clear
+  //             </button>
+  //           </div>
+  //           <div style={{backgroundColor:{theme}}} className="h-96 lg:h-full p-4 text-green-400 font-mono text-sm  border border-primary-200  ">
+  //             <pre className="whitespace-pre-wrap">
+  //               {output || "Output will appear here..."}
+  //             </pre>
+  //           </div>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   </div>
+  // );
   return (
-    <div>
-      <div className="h-full flex flex-col space-y-4">
-        <div className="flex items-center justify-between">
-          <h1 className="text-2xl font-semibold text-gray-800">
-            Code Editor (IDE)
-          </h1>
-          <div className="flex items-center space-x-3">
-            <select
-              value={language}
-              onChange={(e) => handleLanguageChange(e.target.value)}
-              className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent"
-            >
-              {languages.map((lang) => (
-                <option key={lang.value} value={lang.value}>
-                  {lang.label}
-                </option>
-              ))}
-            </select>
-            <select
-              value={theme}
-              onChange={(e) => setTheme(e.target.value)}
-              className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent"
-            >
-              {themes.map((t) => (
-                <option key={t.value} value={t.value}>
-                  {t.label}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
-
-        {/* Toolbar */}
-        <div className="flex items-center justify-between bg-white p-4 rounded-lg shadow-sm border border-gray-100">
-          <div className="flex items-center space-x-3">
-            <button
-              onClick={runCode}
-              disabled={isRunning}
-              className="flex items-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:bg-green-400 transition-colors"
-            >
-              <Play className="w-4 h-4" />
-              <span>{isRunning ? "Running..." : "Run Code"}</span>
-            </button>
-            <button
-              onClick={saveCode}
-              className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-            >
-              <Save className="w-4 h-4" />
-              <span>Save</span>
-            </button>
-            <label className="flex items-center space-x-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors cursor-pointer">
-              <Upload className="w-4 h-4" />
-              <span>Load</span>
-              <input
-                type="file"
-                onChange={loadCode}
-                className="hidden"
-                accept=".js,.py,.java,.cpp,.c,.html,.css,.sql,.txt"
-              />
-            </label>
-          </div>
-          <div className="flex items-center space-x-3">
-            <button className="p-2 text-gray-600 hover:text-gray-800 transition-colors">
-              <Settings className="w-5 h-5" />
-            </button>
-            <button className="p-2 text-gray-600 hover:text-gray-800 transition-colors">
-              <Download className="w-5 h-5" />
-            </button>
-          </div>
-        </div>
-
-        {/* Editor and Output */}
-        <div className="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-4 min-h-0">
-          {/* Code Editor */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
-            <div className="flex items-center justify-between px-4 py-2 bg-gray-50 border-b border-gray-100">
-              <span className="text-sm font-medium text-gray-700">Editor</span>
-              <span className="text-xs text-gray-500">{language}</span>
-            </div>
-            <div className="h-96 lg:h-full">
-              <Editor
-                height="100%"
-                language={language}
-                theme={theme}
-                value={code}
-                onChange={(value) => setCode(value || "")}
-                options={{
-                  minimap: { enabled: false },
-                  fontSize: 14,
-                  lineNumbers: "on",
-                  roundedSelection: false,
-                  scrollBeyondLastLine: false,
-                  automaticLayout: true,
-                  tabSize: 2,
-                  wordWrap: "on",
-                }}
-              />
-            </div>
-          </div>
-
-          {/* Output Panel */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
-            <div className="flex items-center justify-between px-4 py-2 bg-gray-50 border-b border-gray-100">
-              <div className="flex items-center space-x-2">
-                <Terminal className="w-4 h-4 text-gray-600" />
-                <span className="text-sm font-medium text-gray-700">
-                  Output
-                </span>
-              </div>
-              <button
-                onClick={() => setOutput("")}
-                className="text-xs text-gray-500 hover:text-gray-700 transition-colors"
-              >
-                Clear
-              </button>
-            </div>
-            <div className="h-96 lg:h-full p-4 bg-gray-900 text-green-400 font-mono text-sm overflow-auto">
-              <pre className="whitespace-pre-wrap">
-                {output || "Output will appear here..."}
-              </pre>
-            </div>
-          </div>
-        </div>
-
-        {/* Quick Actions */}
-        <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
-          <h3 className="text-sm font-medium text-gray-700 mb-3">
-            Quick Templates
-          </h3>
-          <div className="flex flex-wrap gap-2">
+    <div className="h-screen flex flex-col px-2 pb-2 space-y-1 box-border">
+      {/* Toolbar */}
+      <div className="flex items-center justify-between">
+        <div className="flex items-center space-x-3">
+          <select
+            value={language}
+            onChange={(e) => handleLanguageChange(e.target.value)}
+            className="px-2 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent"
+          >
             {languages.map((lang) => (
-              <button
-                key={lang.value}
-                onClick={() => handleLanguageChange(lang.value)}
-                className={`px-3 py-1 text-xs rounded-full transition-colors ${
-                  language === lang.value
-                    ? "bg-gray-800 text-white"
-                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                }`}
-              >
+              <option key={lang.value} value={lang.value}>
                 {lang.label}
-              </button>
+              </option>
             ))}
+          </select>
+
+          <select
+            value={theme}
+            onChange={(e) => setTheme(e.target.value)}
+            className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent"
+          >
+            {themes.map((t) => (
+              <option key={t.value} value={t.value}>
+                {t.label}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="flex items-center space-x-2">
+          <button
+            onClick={runCode}
+            disabled={isRunning}
+            className="h-8 w-12 flex items-center justify-center text-white bg-gray-200 border rounded-lg disabled:bg-green-400 transition-colors"
+          >
+            {isRunning ? "..." : <Play color="gray" className="w-4 h-4" />}
+          </button>
+
+          <button
+            onClick={saveCode}
+            className="h-8 w-12 flex items-center justify-center text-white bg-gray-200 border rounded-lg transition-colors"
+          >
+            <Save color="gray" className="w-4 h-4" />
+          </button>
+
+          <label className="flex items-center space-x-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors cursor-pointer">
+            <Upload className="w-4 h-4" />
+            <input
+              type="file"
+              onChange={loadCode}
+              className="hidden"
+              accept=".js,.py,.java,.cpp,.c,.html,.css,.sql,.txt"
+            />
+          </label>
+
+          <button className="p-2 text-gray-600 hover:text-gray-800 transition-colors">
+            <Settings className="w-5 h-5" />
+          </button>
+          <button className="p-2 text-gray-600 hover:text-gray-800 transition-colors">
+            <Download className="w-5 h-5" />
+          </button>
+        </div>
+      </div>
+
+      {/* Editor and Output */}
+      <div className="flex-1 min-h-0 overflow-hidden border border-primary-500 rounded-md pb-4 grid grid-cols-1 lg:grid-cols-2 gap-4">
+        {/* Code Editor Panel */}
+        <div className="flex flex-col bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
+          <div className="flex items-center justify-between px-4 py-2 bg-gray-50 border-b border-gray-100">
+            <span className="text-sm font-medium text-gray-700">Editor</span>
+            <span className="text-xs text-gray-500">{language}</span>
           </div>
+          <div className="flex-1 min-h-0">
+            <Editor
+              height="100%"
+              language={language}
+              theme={theme}
+              value={code}
+              onChange={(value) => setCode(value || "")}
+              options={{
+                minimap: { enabled: false },
+                fontSize: 14,
+                lineNumbers: "on",
+                roundedSelection: false,
+                automaticLayout: true,
+                tabSize: 2,
+                wordWrap: "on",
+              }}
+            />
+          </div>
+        </div>
+
+        {/* Output Panel */}
+        <div className="flex flex-col bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
+          <div className="flex items-center justify-between px-4 py-2 bg-gray-50 border-b border-gray-100">
+            <div className="flex items-center space-x-2">
+              <div className="w-4 h-4 text-gray-600" >{"_/>"}</div>
+              <span className="text-sm font-medium text-gray-700">Output</span>
+            </div>
+            <button
+              onClick={() => setOutput("")}
+              className="text-xs text-gray-500 hover:text-gray-700 transition-colors"
+            >
+              Clear
+            </button>
+          </div>
+          <div
+            className={`flex-1 min-h-0 overflow-auto p-4 font-mono text-sm border border-primary-200 ${
+              theme === "vs-dark"
+                ? "bg-gray-900 text-green-300"
+                : "bg-white text-green-600"
+            }`}
+          >
+            <pre className="whitespace-pre-wrap">
+              {output || "Output will appear here..."}
+            </pre>
+          </div>
+         
         </div>
       </div>
     </div>

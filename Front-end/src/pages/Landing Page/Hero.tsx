@@ -9,7 +9,7 @@ const Hero: React.FC = () => {
       opacity: 1,
       transition: {
         staggerChildren: 0.2,
-        delayChildren: 0.3
+        delayChildren: 0.2
       }
     }
   };
@@ -19,7 +19,7 @@ const Hero: React.FC = () => {
     visible: {
       y: 0,
       opacity: 1,
-      transition: { duration: 0.5 }
+      transition: { duration: 0.3 }
     }
   };
 

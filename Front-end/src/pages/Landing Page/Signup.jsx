@@ -1,36 +1,24 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
- 
+import useAuthStore from "../../store/useAuthStore";
+
 const Register = () => {
-  const registerUser={}
-  const [name, setName] = useState("");
+  const register = useAuthStore((state) => state.register);
+  const { isLoading, error } = useAuthStore();
+
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
-
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // validate password
-    if (password !== confirmPassword) {
-      setError("password does not match");
-      return;
-    }
-    setLoading(true);
-    setError("");
-
-    // call register function
-    try {
-      await registerUser(name, email, password);
-      alert("registered successfully")
-      navigate("/login");
-    } catch (error) {
-      setError(error.response?.data?.message || "Registration failed");
-    } finally {
-      setLoading(false);
+    if (password != confirmPassword) {
+      const result = await register({ username, email, password });
+      if (result) {
+        <Navigate to="/login" />
+      }
     }
   };
 
@@ -68,8 +56,8 @@ const Register = () => {
               autoComplete="name"
               required
               className="form-input w-full"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
             />
           </div>
 
@@ -121,39 +109,9 @@ const Register = () => {
             />
           </div>
 
-          {/* <div>
+          <div>
             <label className="form-label">Account type</label>
-            <div className="mt-1 grid grid-cols-2 gap-3">
-              <div
-                className={`
-                  border rounded-md px-3 py-2 flex items-center justify-center cursor-pointer
-                  text-sm font-medium transition-colors
-                  ${
-                    userType === 'client'
-                      ? 'bg-blue-50 border-blue-300 text-blue-700'
-                      : 'border-gray-300 text-gray-700 hover:bg-gray-50'
-                  }
-                `}
-                onClick={() => setUserType('client')}
-              >
-                I need tasks done
-              </div>
-              <div
-                className={`
-                  border rounded-md px-3 py-2 flex items-center justify-center cursor-pointer
-                  text-sm font-medium transition-colors
-                  ${
-                    userType === 'worker'
-                      ? 'bg-blue-50 border-blue-300 text-blue-700'
-                      : 'border-gray-300 text-gray-700 hover:bg-gray-50'
-                  }
-                `}
-                onClick={() => setUserType('worker')}
-              >
-                I want to work
-              </div>
-            </div>
-          </div> */}
+          </div>
 
           <div className="flex items-center">
             <input
@@ -179,11 +137,11 @@ const Register = () => {
             <motion.button
               type="submit"
               className="btn-primary w-full"
-              disabled={loading}
+              disabled={isLoading}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              {loading ? "Creating account..." : "Create account"}
+              {isLoading ? "Creating account..." : "Create account"}
             </motion.button>
           </div>
         </form>
@@ -191,12 +149,12 @@ const Register = () => {
         <div className="mt-6 text-center">
           <p className="text-sm text-gray-600">
             Already have an account?{" "}
-            <Link
+            <NavLink
               to="/login"
               className="text-blue-600 hover:text-blue-800 font-medium"
             >
               Sign in
-            </Link>
+            </NavLink>
           </p>
         </div>
       </motion.div>

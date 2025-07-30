@@ -3,31 +3,23 @@ import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebookF, FaGithub } from "react-icons/fa";
+import { PiStudent } from "react-icons/pi";
+import { RiAdminFill } from "react-icons/ri";
 import { FaXTwitter } from "react-icons/fa6";
+import useAuthStore from "../../store/useAuthStore";
 const Login = () => {
-  const loginUser = {
-    name: "loginUser",
-    email: "",
-    password: "",
-  }
+  const login  = useAuthStore((state) => state.login);
+  const { isLoading, error } = useAuthStore();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [LoginError, setLoginError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [role, setRole] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    try {
-      // await loginUser(email, password);
-      navigate("/dashboard/home"); // Redirect to dashboard on success
-    } catch (err) {
-      setLoginError("Login failed");
-      setEmail('');
-      setPassword('')
-    } finally {
-      setLoading(false);
+    const result = login({ email, password,role });
+    if(result) {
+      role=="student"?navigate("/student_dashboard/analysis"):navigate("/admin_dashboard/dashboard");
     }
   };
   return (
@@ -42,13 +34,13 @@ const Login = () => {
           Sign in to your account
         </h2>
 
-        {LoginError && (
+        {error && (
           <motion.div
             className="bg-red-100 text-red-700 p-3 rounded-md mb-4"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            {LoginError}
+            {error}
           </motion.div>
         )}
 
@@ -84,7 +76,29 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
+          <div className="flex justify-center items-center gap-2"> 
+          <motion.button
+            type="button"
+            className="px-3 py-1 border rounded text-sm flex items-center gap-1 hover:bg-gray-100 transition"
+            onClick={()=>setRole("admin")}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+          >
+            <RiAdminFill className="text-base" />
+            Admin
+          </motion.button>
 
+          <motion.button
+            type="button"
+            className="px-3 py-1 border rounded text-sm flex items-center gap-1 hover:bg-gray-100 transition"
+            onClick={()=>setRole("student")}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+          >
+            <PiStudent className="text-base" />
+            Student
+          </motion.button>
+           </div>
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               <input
@@ -115,11 +129,11 @@ const Login = () => {
             <motion.button
               type="submit"
               className="btn-primary w-full"
-              disabled={loading}
+              disabled={isLoading}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              {loading ? "Signing in..." : "Sign in"}
+              {isLoading ? "Signing in..." : "Sign in"}
             </motion.button>
           </div>
         </form>
